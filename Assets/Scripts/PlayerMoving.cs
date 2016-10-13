@@ -20,10 +20,20 @@ public class PlayerMoving : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        movementVector.y = Input.GetAxis("Vertical");
-        movementVector.x = Input.GetAxis("Horizontal");
+        //movementVector.y = Input.GetAxis("Vertical");
+        //movementVector.x = Input.GetAxis("Horizontal");
 
         myTransform.position = Vector3.Lerp(myTransform.position, myTransform.position + sphereTransform.forward * movementVector.y * speed, Time.deltaTime * 5);
         myTransform.position = Vector3.Lerp(myTransform.position, myTransform.position + sphereTransform.right * movementVector.x * speed, Time.deltaTime * 5);
+    }
+
+    void stopMoving()
+    {
+        movementVector.y = 0;
+    }
+
+    void goForward()
+    {
+        movementVector.y = 1;
     }
 }
