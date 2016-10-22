@@ -5,7 +5,6 @@ public class DoorScript : MonoBehaviour
 {
     bool opened;
     Animation ani;
-    public GameObject buttonInteract;
     string[] animations;
 
     // Use this for initialization
@@ -49,17 +48,4 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider c)
-    {
-        if (c.tag.Equals("Player"))
-        {
-            buttonInteract.SetActive(true);
-            buttonInteract.SendMessage("setDoor", this.gameObject);
-        }
-    }
-
-    void OnTriggerExit(Collider c)
-    {
-        buttonInteract.SetActive(false);
-    }
 }
