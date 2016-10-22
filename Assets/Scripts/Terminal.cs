@@ -21,8 +21,12 @@ public class Terminal : MonoBehaviour
 
     public void onClick()
     {
-        GameObject obj = Instantiate<GameObject>(panel);
-        obj.SendMessage("SetCodeString", code);
-        obj.SendMessage("SetTrue", isTrueTerminal);
+        GameObject[] canvas = GameObject.FindGameObjectsWithTag(LockPanelScript.LOCK_CANVAS_TAG);
+        if (canvas.Length == 0)
+        {
+            GameObject obj = Instantiate<GameObject>(panel);
+            obj.SendMessage("SetCodeString", code);
+            obj.SendMessage("SetTrue", isTrueTerminal);
+        }
     }
 }

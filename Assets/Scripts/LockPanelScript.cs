@@ -14,6 +14,8 @@ public class LockPanelScript : MonoBehaviour
 
     int[] code;
 
+    public static string LOCK_CANVAS_TAG = "_LockCanvas";
+
     // Use this for initialization
     void Start ()
     {

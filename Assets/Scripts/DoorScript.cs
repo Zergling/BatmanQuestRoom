@@ -6,12 +6,27 @@ public class DoorScript : MonoBehaviour
     bool opened;
     Animation ani;
     public GameObject buttonInteract;
+    string[] animations;
 
     // Use this for initialization
     void Start ()
     {
         opened = false;
         ani = this.GetComponent<Animation>();
+        animations = new string[ani.GetClipCount()];
+        int i = 0;
+        foreach(AnimationState anistate in ani)
+        {
+            animations[i] = anistate.name;
+            i++;
+        }
+
+        /*
+        foreach(string str in animations)
+        {
+            Debug.Log(str);
+        }
+        */
 	}
 	
 	// Update is called once per frame
@@ -24,12 +39,12 @@ public class DoorScript : MonoBehaviour
     {
         if (opened == false)
         {
-            ani.CrossFade("doorOpen");
+            ani.CrossFade(animations[0]);
             opened = true;
         }
         else
         {
-            ani.CrossFade("doorClose");
+            ani.CrossFade(animations[1]);
             opened = false;
         }
     }
@@ -38,13 +53,13 @@ public class DoorScript : MonoBehaviour
     {
         if (c.tag.Equals("Player"))
         {
-            buttonInteract.active = true;
+            buttonInteract.SetActive(true);
             buttonInteract.SendMessage("setDoor", this.gameObject);
         }
     }
 
     void OnTriggerExit(Collider c)
     {
-        buttonInteract.active = false;
+        buttonInteract.SetActive(false);
     }
 }
