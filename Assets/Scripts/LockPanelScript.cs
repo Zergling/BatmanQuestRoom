@@ -6,8 +6,16 @@ public class LockPanelScript : MonoBehaviour
 {
     #region Unity scene setting
     [SerializeField]
-    private Text[] TextFields;
+    private Sprite[] Sprites;
     #endregion
+
+    #region Unity scene setting
+    [SerializeField]
+    private Image[] Images;
+    #endregion
+
+    public Canvas grantedCanvas;
+    public Canvas deniedCanvas;
 
     private string codeString;
     private bool isTrue;
@@ -22,7 +30,7 @@ public class LockPanelScript : MonoBehaviour
         code = new int[4];
         for (int i = 0; i < 4; i++)
         {
-            code[i] = 0;
+            code[i] = -1;
         }
 	}
 	
@@ -35,11 +43,11 @@ public class LockPanelScript : MonoBehaviour
     public void Inc(int index)
     {
         code[index]++;
-        if (code[index] > 9)
+        if (code[index] > 4)
         {
             code[index] = 0;
         }
-        TextFields[index].text = code[index].ToString();
+        Images[index].sprite = Sprites[code[index]];
     }
 
     public void Dec(int index)
@@ -47,9 +55,9 @@ public class LockPanelScript : MonoBehaviour
         code[index]--;
         if (code[index] < 0)
         {
-            code[index] = 9;
+            code[index] = 4;
         }
-        TextFields[index].text = code[index].ToString();
+        Images[index].sprite = Sprites[code[index]];
     }
 
     public void SetCodeString(string tCodeString)
@@ -65,9 +73,9 @@ public class LockPanelScript : MonoBehaviour
     public void Confirm()
     {
         string thisCode = "";
-        for (int i = 0; i < TextFields.Length; i++)
+        for (int i = 0; i < 4; i++)
         {
-            thisCode += TextFields[i].text;
+            thisCode += code[i].ToString();
         }
 
         GameObject.Destroy(gameObject);
@@ -76,14 +84,17 @@ public class LockPanelScript : MonoBehaviour
         {
             Debug.Log("TRUE TERMINAL");
             // make a signal
+            Debug.Log(thisCode + "  " + codeString);
             if (thisCode.ToLower().Equals(codeString.ToLower()))
             {
                 Debug.Log("SIGNAL TO USB PORT");
+                Instantiate(grantedCanvas);
                 return;
             }
         }
 
         // else - nothing to do here;
         Debug.Log("NO SIGNAL");
+        Instantiate(deniedCanvas);
     }
 }
