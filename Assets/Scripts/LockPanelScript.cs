@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO.Ports;
+using System.IO;
 
 public class LockPanelScript : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class LockPanelScript : MonoBehaviour
 
     int[] code;
 
+    SerialPort stream;
+
     public static string LOCK_CANVAS_TAG = "_LockCanvas";
 
     // Use this for initialization
@@ -32,6 +36,9 @@ public class LockPanelScript : MonoBehaviour
         {
             code[i] = -1;
         }
+
+        stream = new SerialPort("COM3", 9600);
+        stream.ReadTimeout = 50;
 	}
 	
 	// Update is called once per frame
@@ -39,6 +46,21 @@ public class LockPanelScript : MonoBehaviour
     {
 	
 	}
+
+    public void WriteToArduino(string message)
+    {
+        try
+        {
+            stream.Open();
+            stream.WriteLine(message);
+            stream.BaseStream.Flush();
+            stream.Close();
+        }
+        catch(IOException e)
+        {
+            Debug.Log("ERR");
+        }
+    }
 
     public void Inc(int index)
     {
@@ -88,6 +110,7 @@ public class LockPanelScript : MonoBehaviour
             if (thisCode.ToLower().Equals(codeString.ToLower()))
             {
                 Debug.Log("SIGNAL TO USB PORT");
+                WriteToArduino("RIGHT");
                 Instantiate(grantedCanvas);
                 return;
             }
@@ -95,6 +118,7 @@ public class LockPanelScript : MonoBehaviour
 
         // else - nothing to do here;
         Debug.Log("NO SIGNAL");
+        WriteToArduino("WRONG");
         Instantiate(deniedCanvas);
     }
 }
