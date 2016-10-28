@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Batarang : MonoBehaviour
 {
+    public static string BATARANG_TAG = "_Batarang";
     public float speed;
     Camera camera;
     Vector3 direction;

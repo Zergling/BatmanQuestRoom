@@ -29,4 +29,12 @@ public class Terminal : MonoBehaviour
             obj.SendMessage("SetTrue", isTrueTerminal);
         }
     }
+
+    void OnCollisionEnter(Collision c)
+    {
+        if (c.collider.tag.Equals(Batarang.BATARANG_TAG))
+        {
+            onClick();
+        }
+    }
 }
