@@ -37,7 +37,7 @@ public class LockPanelScript : MonoBehaviour
             code[i] = -1;
         }
 
-        stream = new SerialPort("COM3", 9600);
+        stream = new SerialPort("COM4", 9600);
         stream.ReadTimeout = 50;
 	}
 	
@@ -58,7 +58,7 @@ public class LockPanelScript : MonoBehaviour
         }
         catch(IOException e)
         {
-            Debug.Log("ERR");
+            Debug.Log("ERR: no port open or write error");
         }
     }
 
@@ -118,7 +118,6 @@ public class LockPanelScript : MonoBehaviour
 
         // else - nothing to do here;
         Debug.Log("NO SIGNAL");
-        WriteToArduino("WRONG");
         Instantiate(deniedCanvas);
     }
 }
