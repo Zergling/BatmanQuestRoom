@@ -36,9 +36,6 @@ public class LockPanelScript : MonoBehaviour
         {
             code[i] = -1;
         }
-
-        stream = new SerialPort("COM4", 9600);
-        stream.ReadTimeout = 50;
 	}
 	
 	// Update is called once per frame
@@ -49,16 +46,39 @@ public class LockPanelScript : MonoBehaviour
 
     public void WriteToArduino(string message)
     {
-        try
+
+        string comName = "COM";
+        int comNum = 2;
+        bool flag = true;
+
+        Debug.Log("Ok");
+
+        while(flag)
         {
-            stream.Open();
-            stream.WriteLine(message);
-            stream.BaseStream.Flush();
-            stream.Close();
-        }
-        catch(IOException e)
-        {
-            Debug.Log("ERR: no port open or write error");
+            try
+            {
+                comName = comName.Insert(3, comNum.ToString());
+                stream = new SerialPort(comName, 9600);
+                stream.ReadTimeout = 50;
+                Debug.Log(comName);
+                stream.Open();
+                stream.WriteLine(message);
+                stream.BaseStream.Flush();
+                stream.Close();
+                flag = false;
+                Debug.Log("We are cool");
+            }
+            catch(IOException e)
+            {
+                Debug.Log("ERR: no port open or write error");
+                comNum++;
+                if (comNum > 10)
+                {
+                    Debug.Log("ERR: no such COM port");
+                    return;
+                }
+                comName = comName.Substring(0, comName.Length - 1);
+            }
         }
     }
 
