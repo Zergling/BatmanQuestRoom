@@ -46,6 +46,19 @@ public class DoorScript : MonoBehaviour
             ani.CrossFade(animations[1]);
             opened = false;
         }
+
+        GameObject[] batarangs = GameObject.FindGameObjectsWithTag(Batarang.BATARANG_TAG);
+        foreach (GameObject obj in batarangs)
+        {
+            Vector3 mypos = transform.position;
+            Vector3 batpos = obj.transform.position;
+            float d = Mathf.Sqrt(Mathf.Pow(mypos.x - batpos.x, 2) + Mathf.Pow(mypos.y - batpos.y, 2) + Mathf.Pow(mypos.z - batpos.z, 2));
+
+            if (d <= 2.0f)
+            {
+                Destroy(obj);
+            }
+        }
     }
 
 }
