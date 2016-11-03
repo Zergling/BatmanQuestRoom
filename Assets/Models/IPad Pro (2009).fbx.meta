@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: 10e989ed53f12e64f8af13518ed8e397
+timeCreated: 1478187389
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: blitz01
+    100002: camera_lens01
+    100004: case01
+    100006: headphones_jack01
+    100008: //RootNode
+    100010: IPad_Pro_12_9_inch
+    100012: lt_main_light01
+    100014: power_button01
+    100016: screen01
+    100018: smart_connector01
+    100020: Touch_ID_sensor01
+    100022: Touch_ID_sensor_ring01
+    100024: USB_charger01
+    100026: volume_buttons01
+    400000: blitz01
+    400002: camera_lens01
+    400004: case01
+    400006: headphones_jack01
+    400008: //RootNode
+    400010: IPad_Pro_12_9_inch
+    400012: lt_main_light01
+    400014: power_button01
+    400016: screen01
+    400018: smart_connector01
+    400020: Touch_ID_sensor01
+    400022: Touch_ID_sensor_ring01
+    400024: USB_charger01
+    400026: volume_buttons01
+    2300000: blitz01
+    2300002: camera_lens01
+    2300004: case01
+    2300006: headphones_jack01
+    2300008: power_button01
+    2300010: screen01
+    2300012: smart_connector01
+    2300014: Touch_ID_sensor01
+    2300016: Touch_ID_sensor_ring01
+    2300018: USB_charger01
+    2300020: volume_buttons01
+    3300000: blitz01
+    3300002: camera_lens01
+    3300004: case01
+    3300006: headphones_jack01
+    3300008: power_button01
+    3300010: screen01
+    3300012: smart_connector01
+    3300014: Touch_ID_sensor01
+    3300016: Touch_ID_sensor_ring01
+    3300018: USB_charger01
+    3300020: volume_buttons01
+    4300000: headphones_jack01
+    4300002: blitz01
+    4300004: camera_lens01
+    4300006: screen01
+    4300008: power_button01
+    4300010: case01
+    4300012: volume_buttons01
+    4300014: USB_charger01
+    4300016: smart_connector01
+    4300018: Touch_ID_sensor_ring01
+    4300020: Touch_ID_sensor01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
