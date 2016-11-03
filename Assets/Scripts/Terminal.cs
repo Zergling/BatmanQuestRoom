@@ -37,4 +37,9 @@ public class Terminal : MonoBehaviour
             onClick();
         }
     }
+
+    public void interact()
+    {
+        onClick();
+    }
 }
