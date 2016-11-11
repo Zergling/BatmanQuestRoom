@@ -21,7 +21,7 @@ public class PoliceLights : MonoBehaviour
 	void Update () 
 	{
 		redTemp.y += speed * Time.deltaTime;
-		blueTemp.y -= speed * Time.deltaTime;
+		blueTemp.y -= speed * Time.deltaTime ;
 
 		redLight.transform.eulerAngles = redTemp;
 		blueLight.transform.eulerAngles = blueTemp;
