@@ -11,6 +11,7 @@ public class PoliceLights : MonoBehaviour
 	private Vector3 blueTemp;
 
 	[SerializeField] int speed;
+	[SerializeField] Vector3 gap;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,7 @@ public class PoliceLights : MonoBehaviour
 		redTemp.y += speed * Time.deltaTime;
 		blueTemp.y -= speed * Time.deltaTime ;
 
-		redLight.transform.eulerAngles = redTemp;
-		blueLight.transform.eulerAngles = blueTemp;
+		redLight.transform.eulerAngles = redTemp + gap;
+		blueLight.transform.eulerAngles = blueTemp + gap;
 	}
 }
