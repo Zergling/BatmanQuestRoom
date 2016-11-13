@@ -7,7 +7,7 @@ void setup()
   Serial.begin(9600);
   while (!Serial);
 
-  analogWrite(A4, 0);
+  analogWrite(A4, 255);
 }
 
 void loop () 
