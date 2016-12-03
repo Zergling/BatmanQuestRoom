@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using WindowsInput;
 
 public class PlayerMoving : MonoBehaviour
 {
-    public GameObject sphere;
-    private Transform sphereTransform;
     private Transform myTransform;
     public float speed;
     public Vector3 movementVector;
@@ -12,7 +11,6 @@ public class PlayerMoving : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        sphereTransform = sphere.transform;
         myTransform = this.transform;
         movementVector = new Vector3();
 	}
@@ -20,20 +18,83 @@ public class PlayerMoving : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //movementVector.y = Input.GetAxis("Vertical");
-        //movementVector.x = Input.GetAxis("Horizontal");
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (movementVector.y == 0)
+            {
+                moveForward(1);
+            }
+            else
+            {
+                moveForward(0);
+            }
+            
+        }
 
-        myTransform.position = Vector3.Lerp(myTransform.position, myTransform.position + sphereTransform.forward * movementVector.y * speed, Time.deltaTime * 5);
-        myTransform.position = Vector3.Lerp(myTransform.position, myTransform.position + sphereTransform.right * movementVector.x * speed, Time.deltaTime * 5);
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (movementVector.x == 0)
+            {
+                turnAround(-1);
+            }
+            else
+            {
+                turnAround(0);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (movementVector.x == 0)
+            {
+                turnAround(1);
+            }
+            else
+            {
+                turnAround(0);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            movementVector.y = 0;
+        }
+
+        if (movementVector.y > 0)
+        {
+            InputSimulator.SimulateKeyDown(VirtualKeyCode.UP);
+        }
+        else
+        {
+            InputSimulator.SimulateKeyUp(VirtualKeyCode.UP);
+        }
+
+        if (movementVector.x > 0)
+        {
+            InputSimulator.SimulateKeyDown(VirtualKeyCode.RIGHT);
+        }
+        else
+        {
+            InputSimulator.SimulateKeyUp(VirtualKeyCode.RIGHT);
+        }
+
+        if (movementVector.x < 0)
+        {
+            InputSimulator.SimulateKeyDown(VirtualKeyCode.LEFT);
+        }
+        else
+        {
+            InputSimulator.SimulateKeyUp(VirtualKeyCode.LEFT);
+        }
     }
 
-    void stopMoving()
+    void moveForward(int value)
     {
-        movementVector.y = 0;
+        movementVector.y = value;
     }
 
-    void goForward()
+    void turnAround(int value)
     {
-        movementVector.y = 1;
+        movementVector.x = value;
     }
 }
