@@ -30,7 +30,7 @@ public class PlayerMoving : MonoBehaviour
             }
             
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.A))
         {
             if (movementVector.x == 0)
@@ -54,7 +54,7 @@ public class PlayerMoving : MonoBehaviour
                 turnAround(0);
             }
         }
-
+        */
         if (Input.GetKeyDown(KeyCode.S))
         {
             movementVector.y = 0;
@@ -69,6 +69,7 @@ public class PlayerMoving : MonoBehaviour
             InputSimulator.SimulateKeyUp(VirtualKeyCode.UP);
         }
 
+        /*
         if (movementVector.x > 0)
         {
             InputSimulator.SimulateKeyDown(VirtualKeyCode.RIGHT);
@@ -86,6 +87,7 @@ public class PlayerMoving : MonoBehaviour
         {
             InputSimulator.SimulateKeyUp(VirtualKeyCode.LEFT);
         }
+        */
     }
 
     void moveForward(int value)
