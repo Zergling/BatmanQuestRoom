@@ -3,8 +3,9 @@ using System.Collections;
 
 public class DoorInteractAreaScript : MonoBehaviour
 {
+    public const string TAG = "_InteractArea";
     public GameObject buttonInteract;
-    public GameObject door;
+    public GameObject interactObject;
 	// Use this for initialization
 	void Start ()
     {
@@ -16,18 +17,20 @@ public class DoorInteractAreaScript : MonoBehaviour
     {
 	
 	}
-
+    
     void OnTriggerEnter(Collider c)
     {
         if (c.tag.Equals("Player"))
         {
-            buttonInteract.SetActive(true);
-            buttonInteract.SendMessage("setDoor", door);
+            //buttonInteract.SetActive(true);
+            c.gameObject.SendMessage("SetInteractObject", interactObject);
         }
     }
 
     void OnTriggerExit(Collider c)
     {
-        buttonInteract.SetActive(false);
+        //buttonInteract.SetActive(false);
+        c.gameObject.SendMessage("SetInteractObject", null);
     }
+    
 }
