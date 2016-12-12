@@ -7,10 +7,11 @@ public class Noise : MonoBehaviour
     public int resolution = 256;
 
     private Texture2D texture;
+    public GameObject light;
     // Use this for initialization
     void Start ()
     {
-	
+        light.SetActive(true);
 	}
 	
 	// Update is called once per frame

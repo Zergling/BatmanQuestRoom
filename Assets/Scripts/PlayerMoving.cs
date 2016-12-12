@@ -7,13 +7,18 @@ public class PlayerMoving : MonoBehaviour
     private Transform myTransform;
     public float speed;
     public Vector3 movementVector;
+    public GameObject interactObject;
+    public BatmanBatarangThrowingScript throwScript;
+    public GameObject flashlight;
+    Animator char_anim;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         myTransform = this.transform;
         movementVector = new Vector3();
-	}
+        char_anim = gameObject.GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -30,31 +35,7 @@ public class PlayerMoving : MonoBehaviour
             }
             
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (movementVector.x == 0)
-            {
-                turnAround(-1);
-            }
-            else
-            {
-                turnAround(0);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (movementVector.x == 0)
-            {
-                turnAround(1);
-            }
-            else
-            {
-                turnAround(0);
-            }
-        }
-        */
+       
         if (Input.GetKeyDown(KeyCode.S))
         {
             movementVector.y = 0;
@@ -69,25 +50,21 @@ public class PlayerMoving : MonoBehaviour
             InputSimulator.SimulateKeyUp(VirtualKeyCode.UP);
         }
 
-        /*
-        if (movementVector.x > 0)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            InputSimulator.SimulateKeyDown(VirtualKeyCode.RIGHT);
-        }
-        else
-        {
-            InputSimulator.SimulateKeyUp(VirtualKeyCode.RIGHT);
+            Interact();
         }
 
-        if (movementVector.x < 0)
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            InputSimulator.SimulateKeyDown(VirtualKeyCode.LEFT);
+            char_anim.SetTrigger("Throw_Batarang");
         }
-        else
+
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            InputSimulator.SimulateKeyUp(VirtualKeyCode.LEFT);
+            flashlight.SetActive(!flashlight.activeSelf);
         }
-        */
+
     }
 
     void moveForward(int value)
@@ -98,5 +75,19 @@ public class PlayerMoving : MonoBehaviour
     void turnAround(int value)
     {
         movementVector.x = value;
+    }
+
+    void SetInteractObject(GameObject obj)
+    {
+        interactObject = obj;
+    }
+
+    void Interact()
+    {
+        if (interactObject != null)
+        {
+            Debug.Log("Interact");
+            interactObject.SendMessage("interact");
+        }
     }
 }
