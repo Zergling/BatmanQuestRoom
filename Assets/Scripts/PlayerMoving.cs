@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using WindowsInput;
+using UnityEngine.UI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerMoving : MonoBehaviour
 {
@@ -10,7 +12,9 @@ public class PlayerMoving : MonoBehaviour
     public GameObject interactObject;
     public BatmanBatarangThrowingScript throwScript;
     public GameObject flashlight;
+    public Text interactText;
     Animator char_anim;
+    ThirdPersonUserControl controls;
 
     // Use this for initialization
     void Start ()
@@ -18,6 +22,8 @@ public class PlayerMoving : MonoBehaviour
         myTransform = this.transform;
         movementVector = new Vector3();
         char_anim = gameObject.GetComponent<Animator>();
+        interactText.gameObject.SetActive(false);
+        controls = GetComponent<ThirdPersonUserControl>();
     }
 	
 	// Update is called once per frame
@@ -80,6 +86,15 @@ public class PlayerMoving : MonoBehaviour
     void SetInteractObject(GameObject obj)
     {
         interactObject = obj;
+        if (obj == null)
+        {
+            interactText.gameObject.SetActive(false);
+        }
+        else
+        {
+            interactText.gameObject.SetActive(true);
+        }
+        
     }
 
     void Interact()
@@ -88,6 +103,25 @@ public class PlayerMoving : MonoBehaviour
         {
             Debug.Log("Interact");
             interactObject.SendMessage("interact");
+            if (interactObject.tag.Equals(Terminal.TAG))
+            {
+                DisableMoving();
+            }
         }
+    }
+
+    void OnTriggerExit(Collider c)
+    {
+        SetInteractObject(null);
+    }
+
+    void DisableMoving()
+    {
+        GetComponent<ThirdPersonUserControl>().enabled = false;
+    }
+
+    void EnableMoving()
+    {
+        GetComponent<ThirdPersonUserControl>().enabled = true;
     }
 }

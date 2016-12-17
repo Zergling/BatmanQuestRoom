@@ -1,28 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum Level
+{
+    Start,
+    Game
+};
+
 public class SceneSwitcher : MonoBehaviour
 {
+    public static Level level = Level.Start;
 
 	// Use this for initialization
 	void Start ()
     {
-	
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (level == Level.Start)
         {
-            Debug.Log("Go to Start");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("start");
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                Debug.Log("Go To Game Level");
+                SceneSwitcher.level = Level.Game;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("leve");
+            }
         }
-	}
 
-    public void onClick()
-    {
-        Debug.Log("Go to GameLevel");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("leve");
-    }
+        if (level == Level.Game)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("Go to Start");
+                SceneSwitcher.level = Level.Start;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("start");
+            }
+        }
+        
+	}
 }

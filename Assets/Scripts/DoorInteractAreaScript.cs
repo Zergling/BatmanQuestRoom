@@ -26,11 +26,4 @@ public class DoorInteractAreaScript : MonoBehaviour
             c.gameObject.SendMessage("SetInteractObject", interactObject);
         }
     }
-
-    void OnTriggerExit(Collider c)
-    {
-        //buttonInteract.SetActive(false);
-        c.gameObject.SendMessage("SetInteractObject", null);
-    }
-    
 }

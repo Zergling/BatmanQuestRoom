@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Terminal : MonoBehaviour
 {
+    public static string TAG = "_Intercom";
     public bool isTrueTerminal;
     public string code;
     public GameObject panel;

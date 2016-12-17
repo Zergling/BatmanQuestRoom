@@ -11,7 +11,11 @@ public class Noise : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        light.SetActive(true);
+        if (light != null)
+        {
+            light.SetActive(true);
+        }
+        
 	}
 	
 	// Update is called once per frame
