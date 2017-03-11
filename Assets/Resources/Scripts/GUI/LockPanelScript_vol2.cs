@@ -23,6 +23,9 @@ public class LockPanelScript_vol2 : MonoBehaviour
 
     SerialPort stream;
 
+    public delegate void PasswordEnter();
+    public static event PasswordEnter OnPasswordEnterEvent;
+
     void OnEnable()
     {
         SetDefaultState();
@@ -82,7 +85,43 @@ public class LockPanelScript_vol2 : MonoBehaviour
         }
 	}
 
-    public void WriteToArduino(string message)
+
+    public void Confirm()
+    {
+        string thisCode = "";
+        for (int i = 0; i < 4; i++)
+        {
+            thisCode += code[i].ToString();
+        }
+
+        gameObject.SetActive(false);
+
+        if (isTrue == true)
+        {
+            Debug.Log("TRUE TERMINAL");
+            // make a signal
+            Debug.Log(thisCode + "  " + codeString);
+            if (thisCode.ToLower().Equals(codeString.ToLower()))
+            {
+                Debug.Log("SIGNAL TO USB PORT");
+                WriteToArduino("RIGHT");
+                grantedCanvas.SetActive(true);
+            }
+        }
+        else
+        {
+            // else - nothing to do here;
+            Debug.Log("NO SIGNAL");
+            deniedCanvas.SetActive(true);
+        }
+
+        if (OnPasswordEnterEvent != null)
+            OnPasswordEnterEvent();
+    }
+
+
+
+    void WriteToArduino(string message)
     {
 
         string comName = "COM";
@@ -120,6 +159,8 @@ public class LockPanelScript_vol2 : MonoBehaviour
         }
     }
 
+
+
     void IncIndex()
     {
         index++;
@@ -129,6 +170,8 @@ public class LockPanelScript_vol2 : MonoBehaviour
         }
     }
 
+
+
     void DecIndex()
     {
         index--;
@@ -137,6 +180,8 @@ public class LockPanelScript_vol2 : MonoBehaviour
             index = 3;
         }
     }
+
+
 
     void SetActiveSelector(int index)
     {
@@ -153,6 +198,7 @@ public class LockPanelScript_vol2 : MonoBehaviour
         }
     }
 
+
     void Inc(int index)
     {
         code[index]++;
@@ -161,9 +207,11 @@ public class LockPanelScript_vol2 : MonoBehaviour
             code[index] = 0;
         }
         Images[index].color = Color.white;
-        Images[index].sprite = Sprites[code[index]];
+        Images[index].overrideSprite = Sprites[code[index]];
         
     }
+
+
 
     void Dec(int index)
     {
@@ -173,8 +221,10 @@ public class LockPanelScript_vol2 : MonoBehaviour
             code[index] = 4;
         }
         Images[index].color = Color.white;
-        Images[index].sprite = Sprites[code[index]];
+        Images[index].overrideSprite = Sprites[code[index]];
     }
+
+
 
     public void SetCodeString(string tCodeString)
     {
@@ -186,32 +236,5 @@ public class LockPanelScript_vol2 : MonoBehaviour
         isTrue = tIsTrue;
     }
 
-    public void Confirm()
-    {
-        string thisCode = "";
-        for (int i = 0; i < 4; i++)
-        {
-            thisCode += code[i].ToString();
-        }
 
-        gameObject.SetActive(false);
-
-        if (isTrue == true)
-        {
-            Debug.Log("TRUE TERMINAL");
-            // make a signal
-            Debug.Log(thisCode + "  " + codeString);
-            if (thisCode.ToLower().Equals(codeString.ToLower()))
-            {
-                Debug.Log("SIGNAL TO USB PORT");
-                WriteToArduino("RIGHT");
-                grantedCanvas.SetActive(true);
-                return;
-            }
-        }
-
-        // else - nothing to do here;
-        Debug.Log("NO SIGNAL");
-        deniedCanvas.SetActive(true);
-    }
 }

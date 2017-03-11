@@ -7,6 +7,9 @@ public class AccessPanel : MonoBehaviour
     public float timeBeforeFade;
     float timer;
 
+    public delegate void Callback();
+    public static event Callback OnToggleTextHelpVisibilityEvent;
+
     void OnEnable()
     {
         timer = timeBeforeFade;
@@ -17,6 +20,11 @@ public class AccessPanel : MonoBehaviour
     {
         timer -= Time.deltaTime;
         if (timer <= 0)
+        {
+            if (OnToggleTextHelpVisibilityEvent != null)
+                OnToggleTextHelpVisibilityEvent();
+
             gameObject.SetActive(false);
-	}
+        }
+    }
 }
