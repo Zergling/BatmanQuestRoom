@@ -20,12 +20,14 @@ public class PlayerControlls : MonoBehaviour
     {
         InteractbleObject.OnInteractAreaTriggerEvent += SetInteractObject;
         Intercom.OnTogglePlayerControlsEvent += ToggleControls;
+        LockPanelScript_vol2.OnPasswordEnterEvent += ToggleControls;
     }
 
     void OnDisable()
     {
         InteractbleObject.OnInteractAreaTriggerEvent -= SetInteractObject;
         Intercom.OnTogglePlayerControlsEvent -= ToggleControls;
+        LockPanelScript_vol2.OnPasswordEnterEvent -= ToggleControls;
     }
 
     // Use this for initialization

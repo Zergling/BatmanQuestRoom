@@ -12,16 +12,6 @@ public class Intercom : InteractbleObject, IPointerClickHandler
     public static event Callback OnTogglePlayerControlsEvent;
     public static event Callback OnToggleTextHelpVisibilityEvent;
 
-    void OnEnable()
-    {
-        LockPanelScript_vol2.OnPasswordEnterEvent += TogglePlayerControls;
-    }
-
-    void OnDisable()
-    {
-        LockPanelScript_vol2.OnPasswordEnterEvent -= TogglePlayerControls;
-    }
-
     public override void Interact(int instanceId)
     {
         if (instanceId != gameObject.GetInstanceID())
