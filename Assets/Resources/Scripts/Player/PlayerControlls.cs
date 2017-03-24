@@ -69,6 +69,9 @@ public class PlayerControlls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
             Interact();
 
+        if (Input.GetKeyUp(KeyCode.F12))
+            LevelManager.Instance.LoadLevel(LevelType.Start);
+
         if (movementVector.y == 1)
             InputSimulator.SimulateKeyDown(VirtualKeyCode.UP);
         else
@@ -93,7 +96,8 @@ public class PlayerControlls : MonoBehaviour
 
     void Interact()
     {
-        interactbleObject.Interact(interactbleObject.gameObject.GetInstanceID());
+        if (userControl.enabled)
+            interactbleObject.Interact(interactbleObject.gameObject.GetInstanceID());
     }
 
     void ToggleControls()
