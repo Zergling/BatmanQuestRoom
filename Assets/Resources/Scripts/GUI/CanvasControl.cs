@@ -22,4 +22,9 @@ public class CanvasControl : MonoBehaviour
     {
         controlHelp.SetActive(!controlHelp.activeInHierarchy);
     }
+
+    private void OnApplicationQuit()
+    {
+        Arduino_script.Instance.CloseStream();
+    }
 }

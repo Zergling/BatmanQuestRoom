@@ -21,8 +21,6 @@ public class LockPanelScript_vol2 : MonoBehaviour
 
     int[] code;
 
-    SerialPort stream;
-
     public delegate void PasswordEnter();
     public static event PasswordEnter OnPasswordEnterEvent;
 
@@ -104,7 +102,7 @@ public class LockPanelScript_vol2 : MonoBehaviour
             if (thisCode.ToLower().Equals(codeString.ToLower()))
             {
                 Debug.Log("SIGNAL TO USB PORT");
-                WriteToArduino("RIGHT");
+                Arduino_script.Instance.WriteToArduino("OPEN");
                 grantedCanvas.SetActive(true);
             }
         }
@@ -119,48 +117,6 @@ public class LockPanelScript_vol2 : MonoBehaviour
             OnPasswordEnterEvent();
     }
 
-
-
-    void WriteToArduino(string message)
-    {
-
-        string comName = "COM";
-        int comNum = 2;
-        bool flag = true;
-
-        Debug.Log("Ok");
-
-        while(flag)
-        {
-            try
-            {
-                comName = comName.Insert(3, comNum.ToString());
-                stream = new SerialPort(comName, 9600);
-                stream.ReadTimeout = 50;
-                Debug.Log(comName);
-                stream.Open();
-                stream.WriteLine(message);
-                stream.BaseStream.Flush();
-                stream.Close();
-                flag = false;
-                Debug.Log("We are cool");
-            }
-            catch(IOException e)
-            {
-                Debug.Log("ERR: no port open or write error");
-                comNum++;
-                if (comNum > 10)
-                {
-                    Debug.Log("ERR: no such COM port");
-                    return;
-                }
-                comName = comName.Substring(0, comName.Length - 1);
-            }
-        }
-    }
-
-
-
     void IncIndex()
     {
         index++;
@@ -170,8 +126,6 @@ public class LockPanelScript_vol2 : MonoBehaviour
         }
     }
 
-
-
     void DecIndex()
     {
         index--;
@@ -180,7 +134,6 @@ public class LockPanelScript_vol2 : MonoBehaviour
             index = 3;
         }
     }
-
 
 
     void SetActiveSelector(int index)

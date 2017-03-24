@@ -130,7 +130,7 @@ public class LockPanelScript : MonoBehaviour
             if (thisCode.ToLower().Equals(codeString.ToLower()))
             {
                 Debug.Log("SIGNAL TO USB PORT");
-                WriteToArduino("RIGHT");
+                WriteToArduino("OPEN");
                 Instantiate(grantedCanvas);
                 return;
             }
