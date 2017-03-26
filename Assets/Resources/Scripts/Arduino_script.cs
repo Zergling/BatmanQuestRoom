@@ -22,6 +22,7 @@ public class Arduino_script
         }
     }
 
+    static private bool isConnected = false;
     static private SerialPort stream;
     static private int timeout = 100;
 
@@ -33,6 +34,12 @@ public class Arduino_script
 
     public string ReadFromArduino(int timeout)
     {
+        if (isConnected == false)
+        {
+            Debug.Log("Arduino not connected");
+            return null;
+        }
+
         stream.ReadTimeout = timeout;
         try
         {
@@ -46,6 +53,12 @@ public class Arduino_script
 
     public void WriteToArduino(string message)
     {
+        if (isConnected == false)
+        {
+            Debug.Log("Arduino not connected");
+            return;
+        }
+
         Debug.Log("Writing: " + message);
         stream.WriteLine(message);
         stream.BaseStream.Flush();
@@ -53,6 +66,12 @@ public class Arduino_script
 
     public void OpenStream()
     {
+        if (isConnected == true)
+        {
+            Debug.Log("Arduino already connected");
+            return;
+        }
+
         string com = "COM4";
 
         stream = new SerialPort(com, 9600);
@@ -72,6 +91,12 @@ public class Arduino_script
 
     public void CloseStream()
     {
+        if (isConnected == false)
+        {
+            Debug.Log("Arduino not connected");
+            return;
+        }
+
         Debug.Log("Close");
         WriteToArduino("CLOSE");
     }
