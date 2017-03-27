@@ -87,6 +87,7 @@ public class Arduino_script
         }
 
         Debug.Log("Stream opened");
+        isConnected = true;
     }
 
     public void CloseStream()
@@ -99,6 +100,8 @@ public class Arduino_script
 
         Debug.Log("Close");
         WriteToArduino("CLOSE");
+        isConnected = false;
+        //stream.Close();
     }
 }
 
