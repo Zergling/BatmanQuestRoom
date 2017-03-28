@@ -74,16 +74,16 @@ public class Arduino_script
 
         string com = "COM4";
 
-        stream = new SerialPort(com, 9600);
-        stream.ReadTimeout = timeout;
-
         try
         {
+            stream = new SerialPort(com, 9600);
+            stream.ReadTimeout = timeout;
             stream.Open();
         }
         catch(IOException e)
         {
             Debug.Log(e.Message);
+            return;
         }
 
         Debug.Log("Stream opened");
