@@ -23,6 +23,20 @@ ModelImporter:
     100030: sub04
     100032: sub04_2
     100034: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431"
+    100036: Figure_9_2_2
+    100038: Figure_9_2_3
+    100040: sub01_2_2
+    100042: sub01_2_3
+    100044: sub02_2_2
+    100046: sub02_2_3
+    100048: sub03_2_2
+    100050: sub03_2_3
+    100052: sub04_2_2
+    100054: sub04_2_3
+    100056: "\u0411\u0443\u043B\u0435\u0432"
+    100058: "\u0411\u0443\u043B\u0435\u0432_2"
+    100060: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431_2"
+    100062: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431_3"
     400000: Figure_9
     400002: Figure_9_2
     400004: //RootNode
@@ -41,6 +55,20 @@ ModelImporter:
     400030: sub04
     400032: sub04_2
     400034: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431"
+    400036: Figure_9_2_2
+    400038: Figure_9_2_3
+    400040: sub01_2_2
+    400042: sub01_2_3
+    400044: sub02_2_2
+    400046: sub02_2_3
+    400048: sub03_2_2
+    400050: sub03_2_3
+    400052: sub04_2_2
+    400054: sub04_2_3
+    400056: "\u0411\u0443\u043B\u0435\u0432"
+    400058: "\u0411\u0443\u043B\u0435\u0432_2"
+    400060: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431_2"
+    400062: "\u041E\u0431\u044A\u0435\u043A\u0442_\u041A\u0443\u0431_3"
     2300000: sub01_MeshPart0
     2300002: sub01_MeshPart1
     2300004: sub02_MeshPart0
@@ -108,6 +136,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -118,7 +147,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
