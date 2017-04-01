@@ -86,6 +86,8 @@ public class LockPanelScript_vol2 : MonoBehaviour
 
     public void Confirm()
     {
+        bool success = false;
+
         string thisCode = "";
         for (int i = 0; i < 4; i++)
         {
@@ -102,17 +104,25 @@ public class LockPanelScript_vol2 : MonoBehaviour
             if (thisCode.ToLower().Equals(codeString.ToLower()))
             {
                 Debug.Log("SIGNAL TO USB PORT");
-                Arduino_script.Instance.WriteToArduino("OPEN");
-                grantedCanvas.SetActive(true);
+                success = true;
             }
         }
         else
         {
             // else - nothing to do here;
             Debug.Log("NO SIGNAL");
-            deniedCanvas.SetActive(true);
         }
 
+        if (success)
+        {
+            Arduino_script.Instance.WriteToArduino("OPEN");
+            grantedCanvas.SetActive(true);
+        }
+        else
+        {
+            deniedCanvas.SetActive(true);
+        }
+        
         if (OnPasswordEnterEvent != null)
             OnPasswordEnterEvent();
     }
