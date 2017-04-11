@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.ThirdPerson;
 using WindowsInput;
+using UnityEngine.SceneManagement;
 
 public class PlayerControlls : MonoBehaviour
 {
@@ -56,6 +57,9 @@ public class PlayerControlls : MonoBehaviour
             else
                 movementVector.y = 0;
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene("start");
 
         if (Input.GetKeyDown(KeyCode.S))
             movementVector.y = 0;
