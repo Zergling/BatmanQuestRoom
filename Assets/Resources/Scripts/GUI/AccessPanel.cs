@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AccessPanel : MonoBehaviour
 {
     public float timeBeforeFade;
+    public bool b;
     float timer;
 
     public delegate void Callback();
@@ -25,6 +27,9 @@ public class AccessPanel : MonoBehaviour
                 OnToggleTextHelpVisibilityEvent();
 
             gameObject.SetActive(false);
+
+            if (b)
+                SceneManager.LoadScene("start");
         }
     }
 }

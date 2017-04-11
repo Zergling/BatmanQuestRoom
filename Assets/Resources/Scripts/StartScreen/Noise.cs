@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Noise : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Noise : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (SceneManager.Equals(SceneManager.GetActiveScene(), SceneManager.GetSceneByName("leve"))) return;
         FillTexture();
     }
 
