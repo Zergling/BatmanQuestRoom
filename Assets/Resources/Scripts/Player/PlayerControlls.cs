@@ -8,14 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControlls : MonoBehaviour
 {
-    public Vector3 movementVector; // just to see in inspector
-
     public InteractbleObject interactbleObject;
     public GameObject flashlight;
     public Animator animator;
     public ThirdPersonUserControl userControl;
     public GameObject batarangPrefab;
     public Transform batarangSpawnPosition;
+    public Rigidbody rigidbody_;
 
     void OnEnable()
     {
@@ -31,17 +30,10 @@ public class PlayerControlls : MonoBehaviour
         LockPanelScript_vol2.OnPasswordEnterEvent -= ToggleControls;
     }
 
-    // Use this for initialization
-    void Start ()
-    {
-        movementVector = new Vector3();
-    }
-	
-	// Update is called once per frame
-	void Update ()
+    void Update()
     {
         PlayerControl();
-	}
+    }
 
     void SetInteractObject(InteractbleObject obj)
     {
@@ -50,20 +42,6 @@ public class PlayerControlls : MonoBehaviour
 
     void PlayerControl()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (movementVector.y == 0)
-                movementVector.y = 1;
-            else
-                movementVector.y = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene("start");
-
-        if (Input.GetKeyDown(KeyCode.S))
-            movementVector.y = 0;
-
         if (Input.GetKeyDown(KeyCode.B))
             StartThrowBatarangAnimation();
 
@@ -73,13 +51,8 @@ public class PlayerControlls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
             Interact();
 
-        if (Input.GetKeyUp(KeyCode.F12))
+        if (Input.GetKeyUp(KeyCode.Escape))
             LevelManager.Instance.LoadLevel(LevelType.Start);
-
-        if (movementVector.y == 1)
-            InputSimulator.SimulateKeyDown(VirtualKeyCode.UP);
-        else
-            InputSimulator.SimulateKeyUp(VirtualKeyCode.UP);
     }
 
     void StartThrowBatarangAnimation()
@@ -100,12 +73,16 @@ public class PlayerControlls : MonoBehaviour
 
     void Interact()
     {
-        if (userControl.enabled)
+        if (userControl.enabled && interactbleObject != null)
             interactbleObject.Interact(interactbleObject.gameObject.GetInstanceID());
     }
 
     void ToggleControls()
     {
         userControl.enabled = !userControl.enabled;
+        if (userControl.enabled)
+            rigidbody_.constraints = RigidbodyConstraints.FreezeRotation;
+        else
+            rigidbody_.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

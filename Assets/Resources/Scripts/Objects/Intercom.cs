@@ -14,6 +14,9 @@ public class Intercom : InteractbleObject, IPointerClickHandler
 
     public override void Interact(int instanceId)
     {
+        if (!lockCanvas.Show())
+            return;
+
         if (instanceId != gameObject.GetInstanceID())
             return;
 
@@ -26,7 +29,6 @@ public class Intercom : InteractbleObject, IPointerClickHandler
 
         lockCanvas.SetTrue(isTrueIntercom);
         lockCanvas.SetCodeString(code);
-        lockCanvas.gameObject.SetActive(true);
     }
 
     public void OnPointerClick(PointerEventData eventData)

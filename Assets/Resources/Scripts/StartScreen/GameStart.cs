@@ -7,7 +7,7 @@ public class GameStart : MonoBehaviour
 {
     void Awake()
     {
-        //LevelManager.Instance.Init();
+        LevelManager.Instance.Init();
 
         Arduino_script.Instance.ConnectToArduino();
         Arduino_script.Instance.WriteToArduino("INIT");
@@ -26,14 +26,7 @@ public class GameStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F11))
+        if (Input.GetKeyUp(KeyCode.Escape))
             SceneManager.LoadScene("leve");
     }
-
-    /*void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.F11))
-            LevelManager.Instance.LoadLevel(LevelType.Game);
-
-	}*/
 }

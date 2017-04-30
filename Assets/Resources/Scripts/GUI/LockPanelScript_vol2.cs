@@ -24,6 +24,15 @@ public class LockPanelScript_vol2 : MonoBehaviour
     public delegate void PasswordEnter();
     public static event PasswordEnter OnPasswordEnterEvent;
 
+    public bool Show()
+    {
+        if (deniedCanvas.activeSelf || grantedCanvas.activeSelf)
+            return false;
+
+        gameObject.SetActive(true);
+        return true;
+    }
+
     void OnEnable()
     {
         SetDefaultState();
