@@ -12,12 +12,22 @@ public class Intercom : InteractbleObject, IPointerClickHandler
     public static event Callback OnTogglePlayerControlsEvent;
     public static event Callback OnToggleTextHelpVisibilityEvent;
 
+    void OnEnable()
+    {
+        Batarang.OnCollisionEvent += OnCollision;
+    }
+
+    void OnDisable()
+    {
+        Batarang.OnCollisionEvent -= OnCollision;
+    }
+
     public override void Interact(int instanceId)
     {
-        if (!lockCanvas.Show())
+        if (instanceId != gameObject.GetInstanceID())
             return;
 
-        if (instanceId != gameObject.GetInstanceID())
+        if (!lockCanvas.Show())
             return;
 
         base.Interact(instanceId);
@@ -40,5 +50,10 @@ public class Intercom : InteractbleObject, IPointerClickHandler
     {
         if (OnTogglePlayerControlsEvent != null)
             OnTogglePlayerControlsEvent();
+    }
+
+    void OnCollision(int instanceId)
+    {
+        Interact(instanceId);
     }
 }

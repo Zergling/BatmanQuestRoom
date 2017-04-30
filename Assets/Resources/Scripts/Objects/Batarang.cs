@@ -47,7 +47,6 @@ public class Batarang : MonoBehaviour
 
     void OnCollisionEnter (Collision c)
     {
-        Debug.Log("batarang collision");
         isMoving = false;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
