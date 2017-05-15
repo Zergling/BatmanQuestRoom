@@ -25,6 +25,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             m_CharacterTargetRot = character.localRotation;
             m_CameraTargetRot = camera.localRotation;
+
+            Cursor.visible = false;
         }
 
 

@@ -11,6 +11,8 @@ public class GameStart : MonoBehaviour
 
         Arduino_script.Instance.ConnectToArduino();
         Arduino_script.Instance.WriteToArduino("INIT");
+
+        Cursor.visible = false;
     }
 
     private void OnApplicationQuit()
