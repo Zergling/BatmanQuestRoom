@@ -28,7 +28,7 @@ public class GameStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.RightShift))
+        if (Input.GetKeyUp(KeyCode.RightArrow))
             SceneManager.LoadScene("leve");
     }
 }
