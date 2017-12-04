@@ -160,9 +160,7 @@ public class LockPanelScript_vol2 : MonoBehaviour
         for (int i = 0; i < Selectors.Length; i++)
         {
             if (i == index)
-            {
-                Selectors[i].color = new Color32(255, 255, 255, 100);
-            }
+				ColorizeActiveSelector(index);
             else
             {
                 Selectors[i].color = Color.clear;
@@ -208,5 +206,16 @@ public class LockPanelScript_vol2 : MonoBehaviour
         isTrue = tIsTrue;
     }
 
-
+	private void ColorizeActiveSelector(int index)
+	{
+		if (!isTrue || index == 0)
+			Selectors[index].color = new Color32(255, 255, 255, 100);
+		else
+		{
+			byte R = (byte)(index == 2 ? 255 : 0);
+			byte G = (byte)(index == 3 ? 255 : 0);
+			byte B = (byte)(index == 1 ? 255 : 0);
+			Selectors[index].color = new Color32(R, G, B, 100);
+		}
+	}
 }
